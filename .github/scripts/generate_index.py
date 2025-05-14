@@ -17,7 +17,7 @@ CATEGORIES = {
     'google': {'name': 'Google Drive', 'icon': '📁'}
 }
 
-# CSS adapté
+# CSS adapté pour 
 CSS = """
 :root {
     --primary-color: #007AFF;  /* Bleu iOS */
@@ -209,47 +209,68 @@ def extract_metadata(filepath):
     else:
         category = 'autre'
     
-    with open(filepath, 'r', encoding='utf-8') as f:
-        content = f.read()
-        soup = BeautifulSoup(content, 'html.parser')
-        
-        # Extraire le titre
-        title = soup.find('h1').text.strip() if soup.find('h1') else os.path.basename(filepath).replace('.html', '')
-        
-        # Extraire la description
-        description = "Tutoriel pour iPhone"
-        objectif = soup.find(class_='objectif')
-        if objectif:
-            description = objectif.text.strip()
-        
-        # Extraire la difficulté et durée (optionnel)
-        difficulty = soup.find('meta', {'name': 'difficulty'})
-        difficulty = difficulty.get('content') if difficulty else 'Facile'
-        
-        duration = soup.find('meta', {'name': 'duration'})
-        duration = duration.get('content') if duration else '5 minutes'
-        
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+            soup = BeautifulSoup(content, 'html.parser')
+            
+            # Extraire le titre
+            title = soup.find('h1').text.strip() if soup.find('h1') else os.path.basename(filepath).replace('.html', '')
+            
+            # Extraire la description
+            description = "Tutoriel pour iPhone"
+            objectif = soup.find(class_='objectif')
+            if objectif:
+                description = objectif.text.strip()
+            
+            # Extraire la difficulté et durée (optionnel)
+            difficulty = soup.find('meta', {'name': 'difficulty'})
+            difficulty = difficulty.get('content') if difficulty else 'Facile'
+            
+            duration = soup.find('meta', {'name': 'duration'})
+            duration = duration.get('content') if duration else '5 minutes'
+            
+            return {
+                'filepath': filepath,
+                'filename': os.path.basename(filepath),
+                'title': title,
+                'category': category,
+                'description': description,
+                'difficulty': difficulty,
+                'duration': duration
+            }
+    except Exception as e:
+        print(f"Erreur lors de la lecture de {filepath}: {e}")
+        # Retourner des valeurs par défaut si le fichier est vide ou corrompu
         return {
             'filepath': filepath,
             'filename': os.path.basename(filepath),
-            'title': title,
+            'title': os.path.basename(filepath).replace('.html', '').replace('-', ' ').title(),
             'category': category,
-            'description': description,
-            'difficulty': difficulty,
-            'duration': duration
+            'description': 'Tutoriel pour iPhone',
+            'difficulty': 'Facile',
+            'duration': '5 minutes'
         }
 
 # Générer les pages de catégories
 def generate_category_pages(tutoriels_by_category):
+    print("\n--- Génération des pages de catégories ---")
+    
     for cat_key, cat_info in CATEGORIES.items():
         category_dir = f'categories/{cat_key}'
+        category_index_path = f'{category_dir}/index.html'
         
-        # Vérifier si le répertoire existe
+        print(f"\nCatégorie: {cat_key} ({cat_info['name']})")
+        print(f"Répertoire: {category_dir}")
+        
+        # Créer le répertoire s'il n'existe pas
         if not os.path.exists(category_dir):
-            continue
-            
+            print(f"  → Création du répertoire {category_dir}")
+            os.makedirs(category_dir, exist_ok=True)
+        
         # Récupérer les tutoriels de cette catégorie
         tutoriels = tutoriels_by_category.get(cat_key, [])
+        print(f"  → {len(tutoriels)} tutoriels trouvés")
         
         # HTML de la page de catégorie
         category_html = f"""<!DOCTYPE html>
@@ -274,8 +295,15 @@ def generate_category_pages(tutoriels_by_category):
         <div class="tutoriels-list">
 """
         
-        for tuto in tutoriels:
-            category_html += f"""
+        if not tutoriels:
+            category_html += """
+            <p style="text-align: center; color: #666; padding: 40px;">
+                Aucun tutoriel disponible dans cette catégorie pour le moment.
+            </p>
+            """
+        else:
+            for tuto in tutoriels:
+                category_html += f"""
             <div class="tutoriel-card">
                 <h3 class="tutoriel-title">{tuto['title']}</h3>
                 <p class="tutoriel-description">{tuto['description']}</p>
@@ -298,15 +326,21 @@ def generate_category_pages(tutoriels_by_category):
 </html>"""
         
         # Écrire le fichier
-        with open(f'{category_dir}/index.html', 'w', encoding='utf-8') as f:
-            f.write(category_html)
-        print(f"Généré: {category_dir}/index.html")
+        try:
+            with open(category_index_path, 'w', encoding='utf-8') as f:
+                f.write(category_html)
+            print(f"  ✓ Créé: {category_index_path}")
+        except Exception as e:
+            print(f"  ✗ Erreur lors de la création de {category_index_path}: {e}")
 
 # Script principal
 print("Génération de l'index et des pages de catégories...")
+print(f"Répertoire de travail: {os.getcwd()}")
 
 # Rechercher tous les fichiers HTML dans les catégories
 html_files = glob.glob('categories/*/*.html')
+print(f"\nFichiers HTML trouvés: {len(html_files)}")
+
 tutoriels = []
 
 for filepath in html_files:
@@ -325,12 +359,15 @@ tutoriels_by_category = {}
 for cat_key in CATEGORIES:
     tutoriels_by_category[cat_key] = [t for t in tutoriels if t['category'] == cat_key]
 
+# Générer les pages de catégories EN PREMIER
+generate_category_pages(tutoriels_by_category)
+
 # Générer le HTML de l'index principal - SEULEMENT LES CATÉGORIES
 categories_html = ""
 for cat_key, cat_info in CATEGORIES.items():
     count = len(tutoriels_by_category.get(cat_key, []))
-    if count > 0:
-        categories_html += f"""
+    # Afficher toutes les catégories, même vides
+    categories_html += f"""
         <a href="categories/{cat_key}/index.html" class="category-card">
             <div class="category-icon">{cat_info['icon']}</div>
             <div class="category-name">{cat_info['name']}</div>
@@ -369,12 +406,22 @@ index_html = f"""<!DOCTYPE html>
 </html>"""
 
 # Écrire l'index principal
-with open('index.html', 'w', encoding='utf-8') as f:
-    f.write(index_html)
-print("Généré: index.html")
+try:
+    with open('index.html', 'w', encoding='utf-8') as f:
+        f.write(index_html)
+    print("\n✓ Généré: index.html")
+except Exception as e:
+    print(f"\n✗ Erreur lors de la création de index.html: {e}")
 
-# Générer les pages de catégories
-generate_category_pages(tutoriels_by_category)
-
-print(f"\nGénération terminée avec succès!")
+print(f"\nGénération terminée!")
 print(f"Total: {len(tutoriels)} tutoriels traités")
+print(f"Catégories créées: {len(CATEGORIES)}")
+
+# Vérifier que les fichiers ont bien été créés
+print("\n--- Vérification des fichiers créés ---")
+for cat_key in CATEGORIES:
+    index_path = f'categories/{cat_key}/index.html'
+    if os.path.exists(index_path):
+        print(f"✓ {index_path} existe")
+    else:
+        print(f"✗ {index_path} n'existe pas")
