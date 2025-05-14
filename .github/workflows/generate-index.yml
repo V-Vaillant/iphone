@@ -2,11 +2,12 @@ name: Generate Index
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
     paths:
       - 'categories/**/*.html'
       - '.github/scripts/generate_index.py'
-  workflow_dispatch:  # Permet de lancer manuellement
+  workflow_dispatch:
 
 jobs:
   build:
