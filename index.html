@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide iPhone - Tutoriels simples</title>
+    <title>Guide iPhone pour Denise</title>
     <style>
+
 :root {
-    --primary-color: #007AFF;
+    --primary-color: #007AFF;  /* Bleu iOS */
     --secondary-color: #5AC8FA;
     --background-color: #F2F2F7;
     --text-color: #000;
     --card-bg: #fff;
     --border-radius: 16px;
-    --text-size-base: 20px;
+    --text-size-base: 20px;  /* Plus grand pour seniors */
     --heading-size: 28px;
 }
 
@@ -50,54 +51,26 @@ h1 {
     font-weight: 600;
 }
 
-.breadcrumb {
-    margin-bottom: 20px;
-    font-size: 16px;
-    color: #666;
-}
-
-.breadcrumb a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+.category-section {
     margin-bottom: 40px;
 }
 
-.category-card {
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-    text-decoration: none;
-    color: var(--text-color);
-}
-
-.category-card:active {
-    transform: scale(0.98);
-}
-
-.category-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-}
-
-.category-name {
+.category-header {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.category-description {
-    font-size: 18px;
-    color: #666;
+.category-header a {
+    color: white;
+    text-decoration: none;
 }
 
 .tutoriel-card {
@@ -145,26 +118,44 @@ h1 {
     font-size: 18px;
 }
 
-.nav-link {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 22px;
-    font-weight: 600;
-    font-size: 18px;
-    margin: 10px;
+.nav-top {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
 .nav-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
     margin-top: 40px;
     padding-top: 20px;
     border-top: 2px solid #E0E0E0;
-    text-align: center;
 }
 
-@media (max-width: 428px) {
+.nav-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 22px;
+    font-weight: 600;
+    margin: 10px;
+}
+
+.voir-plus {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media (max-width: 428px) {  /* iPhone 14 Pro Max width */
     .container {
         padding: 10px;
     }
@@ -173,62 +164,173 @@ h1 {
         font-size: 24px;
     }
     
-    .category-grid {
-        grid-template-columns: 1fr;
+    .category-header {
+        font-size: 20px;
+    }
+    
+    .nav-top, .nav-bottom {
+        flex-direction: column;
+    }
+    
+    .nav-link {
+        width: 100%;
+        text-align: center;
     }
 }
-</style>
+
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>📱 Guide iPhone</h1>
-            <p>Tutoriels simples et détaillés</p>
+            <p>Tutoriels simples et détaillés pour maîtriser votre iPhone</p>
         </header>
         
-        <h2 style="text-align: center; margin-bottom: 30px;">Choisissez une catégorie</h2>
+        <div class="category-section">
+            <h2 class="category-header">
+                <a href="categories/reglages/index.html">
+                    <span>⚙️</span>
+                    Réglages essentiels
+                </a>
+            </h2>
+            <div class="tutoriels-list">
         
-        <div class="category-grid">
+            <div class="tutoriel-card">
+                <h3 class="tutoriel-title">Régler la luminosité et la taille du texte</h3>
+                <p class="tutoriel-description">Ce tutoriel vous apprend à adapter votre iPhone pour un meilleur confort visuel : régler la luminosité de l'écran et augmenter la taille des textes pour mieux les lire.</p>
+                <div class="tutoriel-meta">
+                    <span>⏱️ 10 minutes</span>
+                    <span>📊 Facile</span>
+                </div>
+                <a href="categories/reglages/luminosite-et-taille-texte.html" class="tutoriel-link">Voir le tutoriel</a>
+            </div>
             
-        <a href="categories/reglages/index.html" class="category-card">
-            <div class="category-icon">⚙️</div>
-            <div class="category-name">Réglages essentiels</div>
-            <div class="category-description">Volume, luminosité, Wi-Fi et paramètres de base</div>
-        </a>
+            <div class="tutoriel-card">
+                <h3 class="tutoriel-title">ajuster-volume</h3>
+                <p class="tutoriel-description">Tutoriel pour iPhone</p>
+                <div class="tutoriel-meta">
+                    <span>⏱️ 5 minutes</span>
+                    <span>📊 Facile</span>
+                </div>
+                <a href="categories/reglages/ajuster-volume.html" class="tutoriel-link">Voir le tutoriel</a>
+            </div>
+            
+            </div>
+        </div>
         
-        <a href="categories/communication/index.html" class="category-card">
-            <div class="category-icon">📱</div>
-            <div class="category-name">Communication</div>
-            <div class="category-description">Appels, messages et emails</div>
-        </a>
+        <div class="category-section">
+            <h2 class="category-header">
+                <a href="categories/communication/index.html">
+                    <span>📱</span>
+                    Communication
+                </a>
+            </h2>
+            <div class="tutoriels-list">
         
-        <a href="categories/meta/index.html" class="category-card">
-            <div class="category-icon">👥</div>
-            <div class="category-name">Applications Meta</div>
-            <div class="category-description">Facebook, WhatsApp et Instagram</div>
-        </a>
+            <div class="tutoriel-card">
+                <h3 class="tutoriel-title">passer-appel</h3>
+                <p class="tutoriel-description">Tutoriel pour iPhone</p>
+                <div class="tutoriel-meta">
+                    <span>⏱️ 5 minutes</span>
+                    <span>📊 Facile</span>
+                </div>
+                <a href="categories/communication/passer-appel.html" class="tutoriel-link">Voir le tutoriel</a>
+            </div>
+            
+            </div>
+        </div>
         
-        <a href="categories/photos/index.html" class="category-card">
-            <div class="category-icon">📸</div>
-            <div class="category-name">Photos et souvenirs</div>
-            <div class="category-description">Prendre et partager des photos</div>
-        </a>
+        <div class="category-section">
+            <h2 class="category-header">
+                <a href="categories/meta/index.html">
+                    <span>👥</span>
+                    Applications Meta
+                </a>
+            </h2>
+            <div class="tutoriels-list">
         
-        <a href="categories/organisation/index.html" class="category-card">
-            <div class="category-icon">📅</div>
-            <div class="category-name">Organisation</div>
-            <div class="category-description">Calendrier, rappels et notes</div>
-        </a>
+            <div class="tutoriel-card">
+                <h3 class="tutoriel-title">utiliser-whatsapp</h3>
+                <p class="tutoriel-description">Tutoriel pour iPhone</p>
+                <div class="tutoriel-meta">
+                    <span>⏱️ 5 minutes</span>
+                    <span>📊 Facile</span>
+                </div>
+                <a href="categories/meta/utiliser-whatsapp.html" class="tutoriel-link">Voir le tutoriel</a>
+            </div>
+            
+            </div>
+        </div>
         
-        <a href="categories/google/index.html" class="category-card">
-            <div class="category-icon">📁</div>
-            <div class="category-name">Google Drive</div>
-            <div class="category-description">Accès et synchronisation des fichiers</div>
-        </a>
+        <div class="category-section">
+            <h2 class="category-header">
+                <a href="categories/photos/index.html">
+                    <span>📸</span>
+                    Photos et souvenirs
+                </a>
+            </h2>
+            <div class="tutoriels-list">
         
+            <div class="tutoriel-card">
+                <h3 class="tutoriel-title">prendre-photo</h3>
+                <p class="tutoriel-description">Tutoriel pour iPhone</p>
+                <div class="tutoriel-meta">
+                    <span>⏱️ 5 minutes</span>
+                    <span>📊 Facile</span>
+                </div>
+                <a href="categories/photos/prendre-photo.html" class="tutoriel-link">Voir le tutoriel</a>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="category-section">
+            <h2 class="category-header">
+                <a href="categories/organisation/index.html">
+                    <span>📅</span>
+                    Organisation
+                </a>
+            </h2>
+            <div class="tutoriels-list">
+        
+            <div class="tutoriel-card">
+                <h3 class="tutoriel-title">creer-rappel</h3>
+                <p class="tutoriel-description">Tutoriel pour iPhone</p>
+                <div class="tutoriel-meta">
+                    <span>⏱️ 5 minutes</span>
+                    <span>📊 Facile</span>
+                </div>
+                <a href="categories/organisation/creer-rappel.html" class="tutoriel-link">Voir le tutoriel</a>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="category-section">
+            <h2 class="category-header">
+                <a href="categories/google/index.html">
+                    <span>📁</span>
+                    Google Drive
+                </a>
+            </h2>
+            <div class="tutoriels-list">
+        
+            <div class="tutoriel-card">
+                <h3 class="tutoriel-title">acceder-drive</h3>
+                <p class="tutoriel-description">Tutoriel pour iPhone</p>
+                <div class="tutoriel-meta">
+                    <span>⏱️ 5 minutes</span>
+                    <span>📊 Facile</span>
+                </div>
+                <a href="categories/google/acceder-drive.html" class="tutoriel-link">Voir le tutoriel</a>
+            </div>
+            
+            </div>
         </div>
         
         <div style="text-align: center; margin: 40px 0; color: #666;">
+            <p>7 tutoriels disponibles</p>
             <p><small>Dernière mise à jour: 14/05/2025</small></p>
         </div>
     </div>
