@@ -1,4 +1,4 @@
-# Adaptation pour tutoriels iPhone 
+# Adaptation pour tutoriels iPhone seniors
 import os
 import re
 import glob
@@ -17,7 +17,7 @@ CATEGORIES = {
     'google': {'name': 'Google Drive', 'icon': '📁'}
 }
 
-# CSS adapté 
+# CSS adapté pour seniors
 CSS = """
 :root {
     --primary-color: #007AFF;  /* Bleu iOS */
@@ -64,26 +64,43 @@ h1 {
     font-weight: 600;
 }
 
-.category-section {
-    margin-bottom: 40px;
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
 }
 
-.category-header {
+.category-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.category-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.category-name {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: var(--secondary-color);
-    color: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.category-header a {
-    color: white;
-    text-decoration: none;
+.category-count {
+    font-size: 16px;
+    color: #666;
 }
 
 .tutoriel-card {
@@ -159,15 +176,6 @@ h1 {
     margin: 10px;
 }
 
-.voir-plus {
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-
 @media (max-width: 428px) {  /* iPhone 14 Pro Max width */
     .container {
         padding: 10px;
@@ -177,8 +185,8 @@ h1 {
         font-size: 24px;
     }
     
-    .category-header {
-        font-size: 20px;
+    .categories-grid {
+        grid-template-columns: 1fr;
     }
     
     .nav-top, .nav-bottom {
@@ -317,49 +325,20 @@ tutoriels_by_category = {}
 for cat_key in CATEGORIES:
     tutoriels_by_category[cat_key] = [t for t in tutoriels if t['category'] == cat_key]
 
-# Générer le HTML de l'index principal
-sections_html = ""
+# Générer le HTML de l'index principal - SEULEMENT LES CATÉGORIES
+categories_html = ""
 for cat_key, cat_info in CATEGORIES.items():
-    if tutoriels_by_category[cat_key]:
-        sections_html += f"""
-        <div class="category-section">
-            <h2 class="category-header">
-                <a href="categories/{cat_key}/index.html">
-                    <span>{cat_info['icon']}</span>
-                    {cat_info['name']}
-                </a>
-            </h2>
-            <div class="tutoriels-list">
-        """
-        
-        # Afficher les 3 premiers tutoriels
-        for tuto in tutoriels_by_category[cat_key][:3]:
-            sections_html += f"""
-            <div class="tutoriel-card">
-                <h3 class="tutoriel-title">{tuto['title']}</h3>
-                <p class="tutoriel-description">{tuto['description']}</p>
-                <div class="tutoriel-meta">
-                    <span>⏱️ {tuto['duration']}</span>
-                    <span>📊 {tuto['difficulty']}</span>
-                </div>
-                <a href="{tuto['filepath']}" class="tutoriel-link">Voir le tutoriel</a>
-            </div>
-            """
-        
-        # Ajouter un lien "voir plus" si plus de 3 tutoriels
-        if len(tutoriels_by_category[cat_key]) > 3:
-            sections_html += f"""
-            <a href="categories/{cat_key}/index.html" class="voir-plus">
-                Voir tous les {len(tutoriels_by_category[cat_key])} tutoriels →
-            </a>
-            """
-        
-        sections_html += """
-            </div>
-        </div>
+    count = len(tutoriels_by_category.get(cat_key, []))
+    if count > 0:
+        categories_html += f"""
+        <a href="categories/{cat_key}/index.html" class="category-card">
+            <div class="category-icon">{cat_info['icon']}</div>
+            <div class="category-name">{cat_info['name']}</div>
+            <div class="category-count">{count} tutoriel{"s" if count > 1 else ""}</div>
+        </a>
         """
 
-# Template HTML principal
+# Template HTML principal - UNIQUEMENT LES CATÉGORIES
 index_html = f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -376,9 +355,13 @@ index_html = f"""<!DOCTYPE html>
             <h1>📱 Guide iPhone</h1>
             <p>Tutoriels simples et détaillés pour maîtriser votre iPhone</p>
         </header>
-        {sections_html}
+        
+        <div class="categories-grid">
+            {categories_html}
+        </div>
+        
         <div style="text-align: center; margin: 40px 0; color: #666;">
-            <p>{len(tutoriels)} tutoriels disponibles</p>
+            <p>Choisissez une catégorie pour voir les tutoriels</p>
             <p><small>Dernière mise à jour: {datetime.now().strftime("%d/%m/%Y")}</small></p>
         </div>
     </div>
