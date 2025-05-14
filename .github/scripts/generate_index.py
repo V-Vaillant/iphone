@@ -1,4 +1,4 @@
-# Adaptation pour tutoriels iPhone seniors
+# Adaptation pour tutoriels iPhone 
 import os
 import re
 import glob
@@ -17,7 +17,7 @@ CATEGORIES = {
     'google': {'name': 'Google Drive', 'icon': '📁'}
 }
 
-# CSS adapté pour seniors
+# CSS adapté
 CSS = """
 :root {
     --primary-color: #007AFF;  /* Bleu iOS */
@@ -26,7 +26,7 @@ CSS = """
     --text-color: #000;
     --card-bg: #fff;
     --border-radius: 16px;
-    --text-size-base: 20px;  /* Plus grand pour seniors */
+    --text-size-base: 20px;  /* Plus grand */
     --heading-size: 28px;
 }
 
