@@ -37,8 +37,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add index.html
-          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update index"
+          git add .  # CHANGEMENT ICI : ajoute TOUS les fichiers modifiés
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Auto-update index files"
           
       - name: Push changes
         uses: ad-m/github-push-action@master
