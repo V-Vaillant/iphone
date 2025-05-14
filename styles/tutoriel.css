@@ -1,12 +1,19 @@
 :root {
     --primary-color: #007AFF;
     --secondary-color: #5AC8FA;
-    --background-color: #F2F2F7;
-    --text-color: #000;
-    --card-bg: #fff;
+    --success-color: #34C759;
+    --warning-color: #FF9500;
+    --danger-color: #FF3B30;
+    --background-color: #F7F7FA;
+    --text-color: #1C1C1E;
+    --text-secondary: #8E8E93;
+    --card-bg: #FFFFFF;
+    --border-color: #E5E5EA;
     --border-radius: 16px;
-    --text-size-base: 20px;
-    --heading-size: 28px;
+    --text-size-base: 18px;
+    --heading-size: 32px;
+    --shadow-light: 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-medium: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 * {
@@ -21,53 +28,90 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
-    padding: 20px;
+    padding: 0;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .tutoriel {
     background-color: var(--card-bg);
     border-radius: var(--border-radius);
-    padding: 30px;
+    padding: 0;
     margin: 20px auto;
-    max-width: 800px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
 }
 
+/* En-tête du tutoriel */
 .tutoriel h1 {
     font-size: var(--heading-size);
-    color: var(--primary-color);
-    margin-bottom: 20px;
+    color: white;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 30px;
+    margin: 0;
+    font-weight: 700;
 }
 
+/* Navigation en haut */
+.nav-bottom:first-of-type {
+    background-color: var(--background-color);
+    padding: 15px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Objectif */
 .objectif {
-    background-color: #E3F2FD;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    font-size: 22px;
+    background-color: rgba(0, 122, 255, 0.05);
+    padding: 25px 30px;
+    margin: 0;
+    font-size: 20px;
     border-left: 4px solid var(--primary-color);
+    color: var(--text-color);
+    font-weight: 500;
 }
 
+/* Avant de commencer */
 .avant-de-commencer {
-    background-color: #FFF3E0;
-    padding: 20px;
+    background-color: rgba(255, 149, 0, 0.05);
+    padding: 20px 30px;
+    margin: 30px;
     border-radius: 12px;
-    margin-bottom: 30px;
-    border-left: 4px solid #FF9800;
+    border-left: 4px solid var(--warning-color);
+    font-size: 18px;
 }
 
+/* Sections */
+.tutoriel h2 {
+    font-size: 26px;
+    color: var(--primary-color);
+    margin: 40px 30px 20px 30px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.tutoriel h3 {
+    font-size: 22px;
+    color: var(--text-color);
+    margin: 30px 30px 20px 30px;
+    font-weight: 600;
+}
+
+/* Étapes */
 .etapes {
     counter-reset: step-counter;
     list-style: none;
+    padding: 0 30px;
+    margin: 20px 0;
 }
 
 .etapes li {
     margin-bottom: 30px;
-    padding-left: 50px;
+    padding-left: 60px;
     position: relative;
     counter-increment: step-counter;
 }
@@ -77,82 +121,184 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    width: 40px;
-    height: 40px;
-    background-color: var(--primary-color);
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    font-size: 20px;
+    box-shadow: var(--shadow-light);
 }
 
 .etapes strong {
     display: block;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 10px;
     color: var(--primary-color);
+    font-weight: 600;
+}
+
+.etapes p {
+    margin-bottom: 10px;
+    color: var(--text-color);
 }
 
 .details {
-    background-color: #F5F5F5;
-    padding: 15px;
-    border-radius: 8px;
+    background-color: var(--background-color);
+    padding: 15px 20px;
+    border-radius: 10px;
     margin-top: 10px;
-    font-style: italic;
+    font-size: 16px;
+    color: var(--text-secondary);
+    border-left: 3px solid var(--secondary-color);
 }
 
+/* Vérification */
 .verification {
-    background-color: #E8F5E9;
-    padding: 20px;
+    background-color: rgba(52, 199, 89, 0.05);
+    padding: 25px 30px;
+    margin: 40px 30px;
     border-radius: 12px;
-    margin-top: 30px;
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid var(--success-color);
 }
 
+.verification h3 {
+    color: var(--success-color);
+    margin: 0 0 15px 0;
+    font-size: 22px;
+}
+
+.verification ul {
+    list-style: none;
+    padding-left: 25px;
+}
+
+.verification li {
+    position: relative;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.verification li::before {
+    content: "✓";
+    position: absolute;
+    left: -25px;
+    color: var(--success-color);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Problèmes fréquents */
 .problemes-frequents {
-    background-color: #FFEBEE;
-    padding: 20px;
+    background-color: rgba(255, 59, 48, 0.05);
+    padding: 25px 30px;
+    margin: 40px 30px;
     border-radius: 12px;
-    margin-top: 30px;
-    border-left: 4px solid #F44336;
+    border-left: 4px solid var(--danger-color);
+}
+
+.problemes-frequents h3 {
+    color: var(--danger-color);
+    margin: 0 0 15px 0;
+    font-size: 22px;
+}
+
+.problemes-frequents ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.problemes-frequents li {
+    margin-bottom: 15px;
+    padding-left: 28px;
+    position: relative;
+    font-size: 18px;
+}
+
+.problemes-frequents li::before {
+    content: "⚠";
+    position: absolute;
+    left: 0;
+    color: var(--danger-color);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.problemes-frequents strong {
+    color: var(--danger-color);
 }
 
 /* Navigation */
 .nav-bottom {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 2px solid #E0E0E0;
+    margin-top: 50px;
+    padding: 30px;
+    background-color: var(--background-color);
     text-align: center;
+    border-top: 1px solid var(--border-color);
 }
 
 .nav-link {
     display: inline-block;
-    padding: 12px 24px;
-    background-color: var(--primary-color);
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     text-decoration: none;
-    border-radius: 22px;
+    border-radius: 25px;
     font-weight: 600;
     margin: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--shadow-light);
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.nav-link:active {
+    transform: translateY(0);
 }
 
 /* Responsive */
 @media (max-width: 428px) {
-    body {
-        padding: 10px;
+    .container {
+        padding: 0;
     }
     
     .tutoriel {
-        padding: 20px;
+        border-radius: 0;
+        margin: 0;
     }
     
     .tutoriel h1 {
-        font-size: 24px;
+        font-size: 26px;
+        padding: 25px 20px;
     }
     
-    .objectif, .avant-de-commencer {
+    .objectif,
+    .avant-de-commencer,
+    .verification,
+    .problemes-frequents {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 20px;
+    }
+    
+    .etapes {
+        padding: 0 20px;
+    }
+    
+    .etapes li {
+        padding-left: 50px;
+    }
+    
+    .etapes li::before {
+        width: 40px;
+        height: 40px;
         font-size: 18px;
     }
 }
