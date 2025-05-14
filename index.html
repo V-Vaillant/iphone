@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide iPhone pour Denise</title>
+    <style>
+
+:root {
+    --primary-color: #007AFF;  /* Bleu iOS */
+    --secondary-color: #5AC8FA;
+    --background-color: #F2F2F7;
+    --text-color: #000;
+    --card-bg: #fff;
+    --border-radius: 16px;
+    --text-size-base: 20px;  /* Plus grand pour seniors */
+    --heading-size: 28px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    font-size: var(--text-size-base);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+}
+
+h1 {
+    font-size: var(--heading-size);
+    font-weight: 600;
+}
+
+.category-section {
+    margin-bottom: 40px;
+}
+
+.category-header {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tutoriel-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.tutoriel-card:active {
+    transform: scale(0.98);
+}
+
+.tutoriel-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.tutoriel-description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.tutoriel-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.tutoriel-link {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 22px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+@media (max-width: 428px) {  /* iPhone 14 Pro Max width */
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .category-header {
+        font-size: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📱 Guide iPhone</h1>
+            <p>Tutoriels simples et détaillés</p>
+        </header>
+        
+        <div style="text-align: center; margin: 40px 0; color: #666;">
+            <p>0 tutoriels disponibles</p>
+            <p><small>Dernière mise à jour: 14/05/2025</small></p>
+        </div>
+    </div>
+</body>
+</html>
