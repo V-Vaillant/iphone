@@ -1,0 +1,158 @@
+:root {
+    --primary-color: #007AFF;
+    --secondary-color: #5AC8FA;
+    --background-color: #F2F2F7;
+    --text-color: #000;
+    --card-bg: #fff;
+    --border-radius: 16px;
+    --text-size-base: 20px;
+    --heading-size: 28px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    font-size: var(--text-size-base);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tutoriel {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.tutoriel h1 {
+    font-size: var(--heading-size);
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.objectif {
+    background-color: #E3F2FD;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.avant-de-commencer {
+    background-color: #FFF3E0;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border-left: 4px solid #FF9800;
+}
+
+.etapes {
+    counter-reset: step-counter;
+    list-style: none;
+}
+
+.etapes li {
+    margin-bottom: 30px;
+    padding-left: 50px;
+    position: relative;
+    counter-increment: step-counter;
+}
+
+.etapes li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.etapes strong {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.details {
+    background-color: #F5F5F5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.verification {
+    background-color: #E8F5E9;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 30px;
+    border-left: 4px solid #4CAF50;
+}
+
+.problemes-frequents {
+    background-color: #FFEBEE;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 30px;
+    border-left: 4px solid #F44336;
+}
+
+/* Navigation */
+.nav-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #E0E0E0;
+    text-align: center;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 22px;
+    font-weight: 600;
+    margin: 10px;
+}
+
+/* Responsive */
+@media (max-width: 428px) {
+    body {
+        padding: 10px;
+    }
+    
+    .tutoriel {
+        padding: 20px;
+    }
+    
+    .tutoriel h1 {
+        font-size: 24px;
+    }
+    
+    .objectif, .avant-de-commencer {
+        font-size: 18px;
+    }
+}
