@@ -26,7 +26,7 @@ CSS = """
     --text-color: #000;
     --card-bg: #fff;
     --border-radius: 16px;
-    --text-size-base: 20px;  /* Plus grand pour seniors */
+    --text-size-base: 20px;  /* Plus grand */
     --heading-size: 28px;
 }
 
@@ -233,7 +233,7 @@ index_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide iPhone pour Denise</title>
+    <title>Guide iPhone pour Maman</title>
     <style>
 {CSS}
     </style>
